@@ -9,7 +9,7 @@ setopt autocd extendedglob nomatch HIST_IGNORE_DUPS SHARE_HISTORY
 # ========================
 # KEYBINDS
 # ========================
-bindkey -v   # vim mode (optional, remove if you prefer emacs)
+bindkey -e
 
 # ========================
 # COMPLETION
@@ -20,7 +20,7 @@ compinit
 # ========================
 # ENV
 # ========================
-export EDITOR=vi
+export EDITOR=nano
 export GPG_TTY=$(tty)
 
 # ========================
@@ -67,3 +67,10 @@ PROMPT='%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})âž
 # ========================
 setopt CORRECT          # minor typo correction
 setopt INTERACTIVE_COMMENTS
+
+# ========================
+# TMUX config for ZSH
+# ========================
+if [ -z "$TMUX" ]; then
+  tmux attach -t main || tmux new -s main
+fi
