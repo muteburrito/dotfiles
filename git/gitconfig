@@ -1,0 +1,16 @@
+[user]
+    name = muteburrito
+    email = kulkarnichinmay65@gmail.com
+    signingkey = 8BA94C8105E4A6C4
+
+[gpg]
+    program = gpg
+
+[commit]
+    gpgsign = true
+
+[core]
+    editor = nano
+
+[init]
+    defaultBranch = main
