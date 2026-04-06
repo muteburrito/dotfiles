@@ -9,7 +9,7 @@ setopt autocd extendedglob nomatch HIST_IGNORE_DUPS SHARE_HISTORY
 # ========================
 # KEYBINDS
 # ========================
-bindkey -e
+bindkey -v
 
 # ========================
 # COMPLETION
@@ -20,7 +20,7 @@ compinit
 # ========================
 # ENV
 # ========================
-export EDITOR=nano
+export EDITOR=nvim
 export GPG_TTY=$(tty)
 
 # ========================
@@ -38,6 +38,9 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
+
+alias vi='nvim'
+alias vim='nvim'
 
 # ========================
 # FZF (if installed)
