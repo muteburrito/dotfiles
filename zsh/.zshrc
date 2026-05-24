@@ -18,6 +18,27 @@ autoload -Uz compinit
 compinit
 
 # ========================
+# FZF
+# ========================
+if command -v fzf >/dev/null 2>&1; then
+  [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
+  [ -f /usr/share/fzf/shell/completion.zsh ] && source /usr/share/fzf/shell/completion.zsh
+
+  export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border"
+  export FZF_CTRL_T_COMMAND="find . -type f -o -type d 2>/dev/null"
+  export FZF_ALT_C_COMMAND="find . -type d 2>/dev/null"
+fi
+
+# ========================
+# ZOXIDE
+# ========================
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+  alias cd='z'
+  alias cdi='zi'
+fi
+
+# ========================
 # ENV
 # ========================
 export EDITOR=nvim
