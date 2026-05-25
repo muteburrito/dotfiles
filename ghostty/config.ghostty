@@ -1,4 +1,9 @@
 #################################
+# Ghostty settings
+#################################]
+gtk-titlebar-hide-when-maximized = true
+
+#################################
 # Theme
 #################################
 theme = catppuccin-macchiato.conf
