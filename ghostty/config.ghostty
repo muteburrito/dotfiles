@@ -1,6 +1,6 @@
 #################################
 # Ghostty settings
-#################################]
+#################################
 gtk-titlebar-hide-when-maximized = true
 
 #################################
@@ -11,10 +11,10 @@ theme = catppuccin-macchiato.conf
 ################################
 # Font Settings
 ################################
-font-family = JetBrains Mono
-font-size = 19
+font-family = JetBrains Mono, JetBrainsMono Nerd Font, monospace
+font-size = 13
 
 ################################
 # Shell
 ################################
-command = /usr/bin/zsh
+command = zsh

@@ -1,15 +1,20 @@
 # ========================
 # HISTORY
 # ========================
-HISTFILE=~/.histfile
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
 HISTSIZE=10000
 SAVEHIST=10000
-setopt autocd extendedglob nomatch HIST_IGNORE_DUPS SHARE_HISTORY
+mkdir -p "${HISTFILE:h}"
+setopt autocd extendedglob nomatch HIST_IGNORE_DUPS SHARE_HISTORY APPEND_HISTORY
 
 # ========================
 # KEYBINDS
 # ========================
 bindkey -v
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^P' up-line-or-history
+bindkey '^N' down-line-or-history
 
 # ========================
 # COMPLETION
@@ -21,12 +26,19 @@ compinit
 # FZF
 # ========================
 if command -v fzf >/dev/null 2>&1; then
-  [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
-  [ -f /usr/share/fzf/shell/completion.zsh ] && source /usr/share/fzf/shell/completion.zsh
+  for fzf_dir in /usr/share/fzf /usr/share/fzf/shell /usr/share/doc/fzf/shell; do
+    [ -f "$fzf_dir/key-bindings.zsh" ] && source "$fzf_dir/key-bindings.zsh"
+    [ -f "$fzf_dir/completion.zsh" ] && source "$fzf_dir/completion.zsh"
+  done
 
-  export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border"
-  export FZF_CTRL_T_COMMAND="find . -type f -o -type d 2>/dev/null"
-  export FZF_ALT_C_COMMAND="find . -type d 2>/dev/null"
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:---height=40% --layout=reverse --border}"
+  if command -v fd >/dev/null 2>&1; then
+    export FZF_CTRL_T_COMMAND="${FZF_CTRL_T_COMMAND:-fd --hidden --follow --exclude .git}"
+    export FZF_ALT_C_COMMAND="${FZF_ALT_C_COMMAND:-fd --type d --hidden --follow --exclude .git}"
+  else
+    export FZF_CTRL_T_COMMAND="${FZF_CTRL_T_COMMAND:-find . -type f -o -type d 2>/dev/null}"
+    export FZF_ALT_C_COMMAND="${FZF_ALT_C_COMMAND:-find . -type d 2>/dev/null}"
+  fi
 fi
 
 # ========================
@@ -41,8 +53,13 @@ fi
 # ========================
 # ENV
 # ========================
-export EDITOR=nvim
-export GPG_TTY=$(tty)
+export EDITOR="${EDITOR:-nvim}"
+export VISUAL="${VISUAL:-$EDITOR}"
+export GPG_TTY="$(tty)"
+
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  export DOTFILES_IS_WSL=1
+fi
 
 # ========================
 # ALIASES
@@ -62,11 +79,6 @@ alias gp='git push'
 
 alias vi='nvim'
 alias vim='nvim'
-
-# ========================
-# FZF (if installed)
-# ========================
-[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 
 # ========================
 # PROMPT (clean + modern)
@@ -95,6 +107,10 @@ setopt INTERACTIVE_COMMENTS
 # ========================
 # TMUX config for ZSH
 # ========================
-if [ -z "$TMUX" ]; then
+if [ -o interactive ] &&
+  [ "${DOTFILES_AUTO_TMUX:-0}" = "1" ] &&
+  [ -z "$TMUX" ] &&
+  [ -z "$VSCODE_INJECTION" ] &&
+  command -v tmux >/dev/null 2>&1; then
   tmux attach -t main || tmux new -s main
 fi
