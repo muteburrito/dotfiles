@@ -107,8 +107,8 @@ setopt INTERACTIVE_COMMENTS
 # ========================
 # TMUX config for ZSH
 # ========================
-if [ -o interactive ] &&
-  [ "${DOTFILES_AUTO_TMUX:-0}" = "1" ] &&
+if [[ -o interactive ]] &&
+  [ "${DOTFILES_AUTO_TMUX:-1}" = "1" ] &&
   [ -z "$TMUX" ] &&
   [ -z "$VSCODE_INJECTION" ] &&
   command -v tmux >/dev/null 2>&1; then

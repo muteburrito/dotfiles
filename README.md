@@ -19,8 +19,8 @@ The setup script installs common CLI dependencies with `dnf`, symlinks the confi
 - Pane/window movement: `Ctrl+h/j/k/l` in tmux and Neovim.
 - tmux prefix: `Ctrl+a`.
 
-Auto-starting tmux is opt-in. Add this to a local shell profile if you want it:
+tmux starts by default for interactive shells. Disable it for a local shell profile with:
 
 ```sh
-export DOTFILES_AUTO_TMUX=1
+export DOTFILES_AUTO_TMUX=0
 ```
