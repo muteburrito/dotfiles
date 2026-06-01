@@ -61,11 +61,6 @@ if grep -qi microsoft /proc/version 2>/dev/null; then
   export DOTFILES_IS_WSL=1
 fi
 
-if command -v java >/dev/null 2>&1; then
-  export JAVA_HOME=$(readlink -f $(which java) | sed "s:/bin/java::")
-fi
-
-
 # ========================
 # ALIASES
 # ========================
@@ -81,9 +76,6 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
-
-alias vi='nvim'
-alias vim='nvim'
 
 # ========================
 # PROMPT (clean + modern)
