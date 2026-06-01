@@ -1,6 +1,6 @@
 # Dotfiles
 
-Device-agnostic Fedora and Fedora-on-WSL dotfiles for zsh, tmux, Neovim, and Ghostty.
+Device-agnostic Fedora and Fedora-on-WSL dotfiles for zsh, Neovim, and Ghostty.
 
 ## Setup
 
@@ -14,13 +14,6 @@ The setup script installs common CLI dependencies with `dnf`, symlinks the confi
 
 ## Theme And Keys
 
-- Theme: Catppuccin Macchiato across Ghostty, tmux, and Neovim.
-- Shell editing: vi mode, with familiar `Ctrl+a/e/p/n` line movement/history.
-- Pane/window movement: `Ctrl+h/j/k/l` in tmux and Neovim.
-- tmux prefix: `Ctrl+a`.
-
-tmux starts by default for interactive shells. Disable it for a local shell profile with:
-
-```sh
-export DOTFILES_AUTO_TMUX=0
-```
+- Theme: Catppuccin Macchiato across Ghostty and Neovim.
+-- Shell editing: vi mode, with familiar `Ctrl+a/e/p/n` line movement/history.
+-- Pane/window movement: `Ctrl+h/j/k/l` in Neovim.
