@@ -76,6 +76,7 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
+alias gd='git diff'
 
 # ========================
 # PROMPT (clean + modern)
@@ -100,7 +101,3 @@ PROMPT='%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})âž
 # ========================
 setopt CORRECT          # minor typo correction
 setopt INTERACTIVE_COMMENTS
-
-# >>> Codex installer >>>
-export PATH="/home/ckulkarni/.local/bin:$PATH"
-# <<< Codex installer <<<
