@@ -101,3 +101,6 @@ PROMPT='%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})âž
 # ========================
 setopt CORRECT          # minor typo correction
 setopt INTERACTIVE_COMMENTS
+
+# opencode
+export PATH=/home/ckulkarni/.opencode/bin:$PATH
